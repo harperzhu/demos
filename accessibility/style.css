@@ -1,0 +1,11 @@
+h1 {
+    font-family: 'Helvetica';
+    color: white;
+    background-color: #333; /*dark gray*/
+    padding: 1em 1em;
+    margin-top: 0;
+}
+
+img {
+    max-width: 300px;
+}
