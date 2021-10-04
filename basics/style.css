@@ -1,0 +1,14 @@
+h1 {
+    font-family: 'Helvetica';
+    color: white;
+    background-color: #333; /*dark gray*/
+    padding: 1em;
+}
+
+p {
+    color: rebeccapurple;
+}
+
+img {
+    border-radius: 10px;
+}
