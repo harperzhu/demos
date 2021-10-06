@@ -1,3 +1,22 @@
+/* p, .alert {
+  color: yellow;
+} */
+
+.alert.success {}
+
+header > p {
+  color: purple;
+}
+
+section:last-child {
+  background-color:lightsteelblue;
+}
+
+section p:hover {
+  background-color:yellow;
+}
+
+
 /* Q1
 .alert.success {
   color: yellow;
@@ -17,27 +36,31 @@
 */
 
 
-/* Q2
-.first.second { color: green};
+/* Q2 */
+/* .first.second { color: green}; */
 
-div > p { color: green; }
+/* div > p { color: green; } */
 
-div .second, #first { color: green; }
+/* div .second, #first { color: green; } */
 
-p:last-child { color: green; } 
-*/
+/* p:last-child { color: green; }  */
+
+/* <div id="red" class="green">
+  <p class="blue">Hello world!</p>
+</div> */
 
 
-/*Q3
-p { color: gray; }
 
-#red p { color: red; }
+/*Q3*/
+/* div p { color: gray; }
 
+#red p { color: red; } */
+
+.red { color: red; }
 .blue { color: blue; }
 
-#red .blue { color: magenta; }
+/* #red .blue { color: magenta; }
 
 .green p { color: lightgreen; }
 
-div.green p.blue { color: cyan; }
-*/
+div.green p.blue { color: cyan; } */
