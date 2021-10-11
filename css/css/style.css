@@ -1,4 +1,14 @@
-/* Q1
+
+header > p {
+  color: yellow;
+}
+
+section p:hover {
+  background-color: yellow;
+}
+
+
+/* Q1*
 .alert.success {
   color: yellow;
 }
@@ -17,27 +27,32 @@
 */
 
 
-/* Q2
-.first.second { color: green};
+/* if(condition1 || condition2) 
 
-div > p { color: green; }
-
-div .second, #first { color: green; }
-
-p:last-child { color: green; } 
 */
 
+/* Q2 */
+/* .first.second { color: green}; */
 
-/*Q3
-p { color: gray; }
+/* div > p { color: green; } */
 
-#red p { color: red; }
+/* div p.second, #first { color: green; } */
 
-.blue { color: blue; }
+/* p:last-child { color: green; }  */
 
-#red .blue { color: magenta; }
 
-.green p { color: lightgreen; }
 
-div.green p.blue { color: cyan; }
-*/
+/*Q3*/
+/* p { color: gray; } */
+
+/* /* #red p { color: red; } */
+
+
+.blue.important { color: blue }
+.red { color: red; }
+
+/* #red .blue { color: magenta; }
+
+.green p { color: lightgreen; } */
+
+/* div.green p.blue { color: cyan; } */
