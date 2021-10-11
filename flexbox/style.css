@@ -2,18 +2,73 @@
   box-sizing: border-box;
 }
 
-/* The section itself */
-.boxes {
+h1 {
+  /* padding-top:2em;
+  padding-bottom:1em; */
+}
+
+ul {
+  background-color:white;
+  /* position:relative; */
+  top:20px; /* 0 ffrom the top */
+  right:0; /* 0 ffrom the left */
+}
+
+li {
+  display:inline-block;
+  width: 100px;
+  /* height:500px; */
+}
+
+.boxes div:nth-of-type(2n) {
+  font-weight:bold;
 
 }
 
+/* The section itself */
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
+
 /* Each div in the "boxes" section */
 .boxes div {
+  /* flex-grow: 1;
+  flex-basis: 16%; */
+  flex: 0 0 200px;
+
   padding: .5em;
   background-color: orange;
   border: 2px solid rebeccapurple;
   margin-bottom: .5em;
 }
+
+/* .a {
+  flex-grow: 3;
+}
+
+.b {
+  flex-grow: 1;
+} */
+
+.boxes > p {
+  font-family: "Festive", cursive;
+  font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -23,6 +78,24 @@
 /* images section */
 .images {
   margin: 1em 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.column {
+  flex-basis:50%;
+}
+
+.column:nth-child(2) {
+  display:flex;
+  flex-direction: column;
+}
+
+/* new wrappers */
+.column:nth-child(2) > div {
+  display: flex;
+  justify-content: center;
+
 }
 
 .card {
