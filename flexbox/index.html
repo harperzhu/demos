@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="author" content="Joel Ross">
     <title>Flexbox Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1>Flexbox Demo</h1>
 
-    <section class="boxes">
+    <ul>
+        <li>Lions</li>
+        <li>Tigers</li>
+        <li>Panthers</li>
+        <li>Bears</li>
+    </ul>
+
+    <!-- <section class="boxes">
         <div class="a">
             Thing A
         </div>
@@ -30,27 +39,32 @@
         </div>
         <div class="f">
             Thing F
-        </div>
-    </section>
-
-    <!-- 
-    <div>
-        <p><cite>All of the below images were found on a Google search</cite></p>
-    </div>
-    <section class="images">
-        <div class="card">      
-            <img src="img/puppy-clap.jpg" alt="a puppy clapping hands">
-            <p>This adorable puppy is clapping hands!</p>
-        </div>
-        <div class="card">
-            <img src="img/puppy-smile.jpg" alt="a puppy looking happy">
-            <p>This adorable puppy looks happy!</p>
-        </div>
-        <div class="card">
-            <img src="img/puppy-kitty.jpg" alt="a puppy and a kitty">
-            <p>This adorable puppy has a friend!</p>
+            <p>Also F</p>
         </div>
     </section> -->
+
+
+    
+    <section class="images">
+        <div class="column">
+            <p><cite>All of the below images were found on a Google search</cite></p>
+        </div>
+    
+        <div class="column">    
+            <div class="card">      
+                <img src="img/puppy-clap.jpg" alt="a puppy clapping hands">
+                <p>This adorable puppy is clapping hands!</p>
+            </div>
+            <div class="card">
+                <img src="img/puppy-smile.jpg" alt="a puppy looking happy">
+                <p>This adorable puppy looks happy!</p>
+            </div>
+            <div class="card">
+                <img src="img/puppy-kitty.jpg" alt="a puppy and a kitty">
+                <p>This adorable puppy has a friend!</p>
+            </div>
+        </div>        
+    </section>
 
 </body>
 </html>
