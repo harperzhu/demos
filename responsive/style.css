@@ -1,6 +1,17 @@
+/* Default rules for everybody*/
+/* This is what it looks like on a phone */
+
 * {
   box-sizing: border-box;
 }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 2em;
+  background-color: lightgrey
+}
+
+/* implicit */
 
 /* the image section itself */
 /* contains 1 "column" of content */
@@ -24,6 +35,7 @@
 /* each card lives in own private "pool" */
 .column > div {
   display: flex;
+  justify-content: center;
 }
 
 /* card in the private pool */
@@ -38,3 +50,47 @@
   border-radius: 10px 10px 0 0;
   width: 300px;
 }
+
+.card p {
+  display: none;
+}
+
+/* apply rules to anyone who is at least 768px wide */
+@media (min-width:768px) {
+  body {
+    background-color: lightblue;
+  }
+
+  .card {
+    background-color:white;
+  }
+
+  .images p {
+    order: -1;
+  }
+
+  .card p {
+    display: block;
+  }
+
+  .column {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+}
+
+/* apply rules to anyone who is at least 992px wide */
+@media (min-width:992px) {
+
+  body {
+    background-color: goldenrod;
+  }
+
+  .card img {
+    width: 600px;
+  }
+
+}
+
+/* 576, 768, 992, 1200 */
