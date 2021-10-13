@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+/* Default rules for mobile */
+
+body {
+  background-color:lightgrey;
+}
+
 /* the image section itself */
 /* contains 1 "column" of content */
 .images {
@@ -38,3 +44,49 @@
   border-radius: 10px 10px 0 0;
   width: 300px;
 }
+
+.card p {
+  display: none;
+}
+
+/* these rules apply only to device at least 768px wide */
+@media (min-width: 768px) {
+
+  body {
+    background-color: lightblue;
+  }
+
+  .card {
+    background-color: white;
+  }
+
+  .card p {
+    display: block;
+  }
+
+  .column {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+}
+
+/* these rules apply only to device at least 992px wide */
+@media (min-width: 992px) {
+
+    body {
+      background-color: goldenrod;
+    }
+
+    .images p {
+      order: -1;
+    }
+
+    .card img {
+      width: 600px;
+    }
+
+}
+
+
+/* 576px, 768, 992, 1200 */
