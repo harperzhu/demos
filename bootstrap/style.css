@@ -1,2 +1,5 @@
 /* Your css here! */
 
+.row {
+    justify-content: center;
+}
