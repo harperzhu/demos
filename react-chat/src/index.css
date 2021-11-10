@@ -1,0 +1,22 @@
+.message {
+    margin-bottom: 1rem;
+}
+
+.message img {
+    width: 50px;
+    border-radius:50%;
+    margin-right: 5px;
+}
+
+.message p {
+    margin-bottom: 0;
+}
+
+/* name */
+.message p:nth-child(1) {
+    font-weight: bold;
+}
+
+.channel-list {
+    height: 100%; /* hacky, flexbox would be better */
+}
