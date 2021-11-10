@@ -1,0 +1,17 @@
+.message-body p {
+    margin-bottom: 0;
+}
+
+.message-body p:nth-child(1) {
+    font-weight: bold;
+}
+
+.message {
+    margin-bottom: 1rem;
+}
+
+.message img {
+    width:50px;
+    border-radius: 50%;
+    margin-right:5px;
+}
