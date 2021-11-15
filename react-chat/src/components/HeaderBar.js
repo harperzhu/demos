@@ -1,10 +1,9 @@
-
 //headerbar component
-export default function HeaderBar() {
+export default function NavBar() {
 
     return (
         <header className="text-light bg-primary px-1">
-            <h1>React Chat</h1>
+            <h1>React Messenger</h1>
         </header>
     )
 };

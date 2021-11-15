@@ -1,59 +1,60 @@
+export function ChatPane({ messageHistory }) { //destructure props
+  
+  const messageComponentArray = messageHistory.map((aMessageObj) => {
+    const theElem = <Message messageData={aMessageObj} key={aMessageObj.timestamp} />
+    return theElem; //goes into new array
+  })
 
-
-export function ChatSection({messageHistory}) {
-
-    //have an array of Objects
-    console.log(messageHistory);
-
-    //want an array of Elements
-    //this to have all the messages
-    const messageElemArray = messageHistory.map((aMessageObj) => {
-        //draw a black box
-        const transformed = <Message messageData={aMessageObj} key={aMessageObj.timestamp} />
-        //return the drawn-on version
-        return transformed; //goes into new array
-    })
-        
-    //want an array of Elements
-    //this to have all the messages
-    // const messageElemArray = [
-    //     <Message messageData={messageHistory[0]} key={messageHistory[0].timestamp} />,
-    //     <Message messageData={messageHistory[1]} />,
-    //     <Message messageData={messageHistory[2]} />,
-    //     <Message messageData={messageHistory[3]} />,
-    // ]
-
-    if(messageHistory.length === 0){
-        return (
-            <div>
-                <p>No messages yet! Start a conversation</p>
-            </div>
-        );
-    }
-
+  //conditional rendering
+  if (messageHistory.length === 0) {
     return (
-        <div>
-            {messageElemArray}
-        </div>
-    )
+      <div>
+        <p>No messages yet! Start a conversation</p>
+      </div>
+    );
+  }
+
+  //return chat elements
+  return (
+    <div className="my-2">
+      {messageComponentArray}
+      <NewMessageDivider />
+    </div>
+  )
 }
 
 function Message(props) {
-    console.log(props);
+  // console.log(props);
+  const {userImg, userName, text} = props.messageData; //destructure
 
-    const userImg = props.messageData.userImg;
-    const userName = props.messageData.userName;
-    const text = props.messageData.text;
+  return (
+    <div className="message d-flex">
+      <div>
+        <img src={userImg} alt={userName+" avatar"} />
+      </div>
+      <div className="message-body position-relative">
+        <p>{userName}</p>
+        <p>
+          {text}
+        </p>
+        <button className="btn like-button">
+          <span className="material-icons" style={{color:"grey"}}>favorite_border</span>
+        </button>
+      </div>
+    </div>
+  )
+}
 
-    return (
-        <div className="message d-flex">
-            <div>
-                <img src={userImg}/>
-            </div>
-            <div className="message-body">
-                <p>{userName}</p>
-                <p>{text}</p>
-            </div>
-        </div>
-    )
+//convience class
+function NewMessageDivider() {
+  return (
+    <div className="position-relative">
+      <hr className="border border-danger" />
+      <span 
+        className="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger"
+        aria-label="New messages below">
+          New
+      </span>
+    </div>
+  )
 }
