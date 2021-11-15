@@ -1,6 +1,7 @@
-import { NavBar } from './Navigation';
-import Channels from './Channels';
-import ChatSection from './Chat';
+import NavBar from './HeaderBar';
+import ChannelNav from './Channels';
+import { ChatPane } from './Chat';
+import ComposeForm from './ComposeForm';
 
 import CHAT_LOG from '../data/chat_log.json';
 
@@ -11,20 +12,23 @@ export default function App(props) {
     'general',
     'social',
     'dank-memes',
-    'Channel 4'
+    'channel-4'
   ]
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid d-flex flex-column" >
       <NavBar />
-      <div className="row">
+      <main className="row flex-grow-1">
         <div className="col-3">
-          <Channels channelList={CHANNEL_LIST} />
+          <ChannelNav channelList={CHANNEL_LIST} />
         </div>
-        <div className="col">
-          <ChatSection messages={CHAT_LOG} />
+        <div className="col-9 d-flex flex-column chat-column">
+            <div className="chat-pane">
+              <ChatPane messageHistory={CHAT_LOG} />
+            </div>
+            <ComposeForm />
         </div>
-      </div>
+      </main>
     </div>    
   );
 }

@@ -1,22 +1,57 @@
+html, body, #root, #root > div {
+  height: 100%;
+}
+
+.material-icons {
+  position: relative;
+  top: 4px;
+}
+
+/*** Channel List ***/
+
+.channel-list {
+  height: 100%; /* hacky, flexbox would be better */
+}
+
+/*** Message Pane ***/
+
+.chat-pane {
+  /* will enable it to scroll content */
+  flex: 1 1 auto;
+  height:0;
+  overflow: auto;
+}
+
 .message {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .message img {
-    width: 50px;
-    border-radius:50%;
-    margin-right: 5px;
+  width:50px;
+  border-radius: 50%;
+  margin-right:5px;
 }
 
-.message p {
-    margin-bottom: 0;
+.message-body p {
+  margin-bottom: 0;
 }
 
 /* name */
-.message p:nth-child(1) {
-    font-weight: bold;
+.message-body p:nth-child(1) {
+  font-weight: bold;
 }
 
-.channel-list {
-    height: 100%; /* hacky, flexbox would be better */
+/* like-buttonn */
+.like-button {
+  padding: 0;
+}
+.like-button .material-icons {
+  position:relative;
+  top:0px;
+}
+
+
+/*** ComposeForm ***/
+textarea {
+    resize:none
 }
