@@ -1,5 +1,22 @@
+import React, { useState } from 'react';
+
 export function ChatPane({ messageHistory }) { //destructure props
+  console.log("rendering ChatPane");
   
+  //number of clicks
+  const [count, setCount] = useState(0)
+  console.log("debug count", count);
+  // const count = stateResultArray[0] //current value
+  // const setCountFunction = stateResultArray[1] //func to change the value
+
+  //testing button
+  const handleClick = (event) => {
+    console.log("clicky clicky");
+    setCount(count + 1) //countState = count + 1
+    // addMessage("Test qwack", "Penguin");
+  };
+
+
   const messageComponentArray = messageHistory.map((aMessageObj) => {
     const theElem = <Message messageData={aMessageObj} key={aMessageObj.timestamp} />
     return theElem; //goes into new array
@@ -17,6 +34,11 @@ export function ChatPane({ messageHistory }) { //destructure props
   //return chat elements
   return (
     <div className="my-2">
+      {/*                                addEventListener('click', handleClick) */}
+      <button className="btn btn-outline-primary mb-3" onClick={handleClick}>
+        Clicked {count} times
+      </button>
+
       {messageComponentArray}
       <NewMessageDivider />
     </div>
@@ -24,8 +46,22 @@ export function ChatPane({ messageHistory }) { //destructure props
 }
 
 function Message(props) {
-  // console.log(props);
+  //state variable
+  const [isLiked, setIsLiked] = useState(false);
+
   const {userImg, userName, text} = props.messageData; //destructure
+
+  const handleClick = (event) => {
+    setIsLiked(!isLiked);
+  }
+
+  let heartColor = "grey";
+  let heartIcon = "favorite_border";
+  if(isLiked){
+    heartColor = "red";
+    heartIcon = "favorite";
+  }
+
 
   return (
     <div className="message d-flex">
@@ -34,11 +70,9 @@ function Message(props) {
       </div>
       <div className="message-body position-relative">
         <p>{userName}</p>
-        <p>
-          {text}
-        </p>
-        <button className="btn like-button">
-          <span className="material-icons" style={{color:"grey"}}>favorite_border</span>
+        <p>{text}</p>
+        <button className="btn like-button" onClick={handleClick}>
+          <span className="material-icons" style={{color:heartColor}}>{heartIcon}</span>
         </button>
       </div>
     </div>

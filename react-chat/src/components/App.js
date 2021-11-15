@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import NavBar from './HeaderBar';
 import ChannelNav from './Channels';
 import { ChatPane } from './Chat';
@@ -6,6 +8,19 @@ import ComposeForm from './ComposeForm';
 import CHAT_LOG from '../data/chat_log.json';
 
 export default function App(props) {
+
+  const [messageArray, setMessageArray] = useState(CHAT_LOG) //store prop as state
+
+  const addMessage = (msgText, msgUser = "Penguin") => {
+    const newMessageObj = {
+      userName: msgUser,
+      userImg: "/img/"+msgUser+".png", //hacky
+      text: msgText,
+      timestamp: Date.now() //posted now
+    }
+    const newMessageArray = [...messageArray, newMessageObj]; //spread to copy!
+    setMessageArray(newMessageArray);
+  }
 
   //get it from the chat log itself?
   const CHANNEL_LIST = [
@@ -24,9 +39,9 @@ export default function App(props) {
         </div>
         <div className="col-9 d-flex flex-column chat-column">
             <div className="chat-pane">
-              <ChatPane messageHistory={CHAT_LOG} />
+            <ChatPane messageHistory={messageArray} />
             </div>
-            <ComposeForm />
+            <ComposeForm whatToDoOnSubmit={addMessage} />
         </div>
       </main>
     </div>    
