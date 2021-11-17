@@ -1,24 +1,9 @@
 import React, { useState } from 'react';
 
-export function ChatPane({ messageHistory }) { //destructure props
-  console.log("rendering ChatPane");
-  
-  //number of clicks
-  const [count, setCount] = useState(0)
-  console.log("debug count", count);
-  // const count = stateResultArray[0] //current value
-  // const setCountFunction = stateResultArray[1] //func to change the value
-
-  //testing button
-  const handleClick = (event) => {
-    console.log("clicky clicky");
-    setCount(count + 1) //countState = count + 1
-    // addMessage("Test qwack", "Penguin");
-  };
-
+export function ChatPane({ currentUser, messageHistory }) { //destructure props
 
   const messageComponentArray = messageHistory.map((aMessageObj) => {
-    const theElem = <Message messageData={aMessageObj} key={aMessageObj.timestamp} />
+    const theElem = <Message fromCurrentUser={aMessageObj.userName === currentUser} messageData={aMessageObj} key={aMessageObj.timestamp} />
     return theElem; //goes into new array
   })
 
@@ -33,12 +18,7 @@ export function ChatPane({ messageHistory }) { //destructure props
 
   //return chat elements
   return (
-    <div className="my-2">
-      {/*                                addEventListener('click', handleClick) */}
-      <button className="btn btn-outline-primary mb-3" onClick={handleClick}>
-        Clicked {count} times
-      </button>
-
+    <div className="my-2 d-flex flex-column">
       {messageComponentArray}
       <NewMessageDivider />
     </div>
@@ -62,9 +42,13 @@ function Message(props) {
     heartIcon = "favorite";
   }
 
+  let divClassList = "message d-flex";
+  // if(props.fromCurrentUser){
+  //   divClassList += "align-self-end"
+  // }
 
   return (
-    <div className="message d-flex">
+    <div className={divClassList}>
       <div>
         <img src={userImg} alt={userName+" avatar"} />
       </div>

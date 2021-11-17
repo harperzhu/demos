@@ -8,10 +8,20 @@ import ComposeForm from './ComposeForm';
 import CHAT_LOG from '../data/chat_log.json';
 
 export default function App(props) {
-
+  const [currentUser, setCurrentUser] = useState(null);
   const [messageArray, setMessageArray] = useState(CHAT_LOG) //store prop as state
 
-  const addMessage = (msgText, msgUser = "Penguin") => {
+  const loginUser = (userName) => {
+    if(!userName){
+      console.log("logging out");
+      setCurrentUser(null);
+    } else {
+      console.log("logging in", userName);
+      setCurrentUser(userName);
+    }
+  }
+
+  const addMessage = (msgText, msgUser) => {
     const newMessageObj = {
       userName: msgUser,
       userImg: "/img/"+msgUser+".png", //hacky
@@ -32,16 +42,16 @@ export default function App(props) {
 
   return (
     <div className="container-fluid d-flex flex-column" >
-      <NavBar />
+      <NavBar user={currentUser} loginFunction={loginUser} />
       <main className="row flex-grow-1">
         <div className="col-3">
           <ChannelNav channelList={CHANNEL_LIST} />
         </div>
         <div className="col-9 d-flex flex-column chat-column">
             <div className="chat-pane">
-            <ChatPane messageHistory={messageArray} />
+            <ChatPane currentUser={currentUser} messageHistory={messageArray} />
             </div>
-            <ComposeForm whatToDoOnSubmit={addMessage} />
+            <ComposeForm user={currentUser} whatToDoOnSubmit={addMessage} />
         </div>
       </main>
     </div>    
