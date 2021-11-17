@@ -50,8 +50,17 @@ html, body, #root, #root > div {
   top:0px;
 }
 
-
 /*** ComposeForm ***/
 textarea {
     resize:none
+}
+
+/*** Header ***/
+header img {
+  width:40px;
+  border-radius: 50%;
+}
+
+header button.user-icon {
+  padding: .25rem;
 }
