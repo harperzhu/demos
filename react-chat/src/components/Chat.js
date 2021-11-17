@@ -1,23 +1,6 @@
 import React, { useState } from 'react';
 
-export function ChatPane({ messageHistory, howToAddAMessage }) { //destructure props
-  
-  console.log("rendering ChatPane");
-
-  //state variable
-  //const countState = 0;
-  const [count, setCount] = useState(0);
-  console.log("debug count", count);
-
-  const whatToDoOnClick = (event) => {
-    console.log("clicky clicky");
-
-    //count = count+1; //want
-    setCount(count);  //doesn't actually change the `count` variable
-                        //changes state and refreshes
-    howToAddAMessage("Test Qwack");
-  }
-
+export function ChatPane({ messageHistory }) { //destructure props
 
   const messageComponentArray = messageHistory.map((aMessageObj) => {
     const theElem = <Message messageData={aMessageObj} key={aMessageObj.timestamp} />
@@ -36,13 +19,6 @@ export function ChatPane({ messageHistory, howToAddAMessage }) { //destructure p
   //return chat elements
   return (
     <div className="my-2">
-      {/* addEventListener('click', whatToDoOnClick) */}
-      <button 
-        className="btn btn-primary mb-2" 
-        onClick={whatToDoOnClick}>
-        Clicked {count} times
-      </button>
-
       {messageComponentArray}
       <NewMessageDivider />
     </div>

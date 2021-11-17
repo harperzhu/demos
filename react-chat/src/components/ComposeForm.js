@@ -28,7 +28,7 @@ export default function ComposeForm(props) {
 				</textarea>
 				<button 
 					className="btn btn-secondary" type="button"
-					disabled={textValue==''}
+					disabled={textValue===''}
 					onClick={handleClick}
 					>
 					<span className="material-icons">send</span>

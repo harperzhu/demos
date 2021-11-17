@@ -16,7 +16,7 @@ export default function App(props) {
       userName: userName,
       text: messageText,
       userImg: "/img/"+userName+".png",
-      timestamp: Date.parse("2021-11-15@09:50AM") //fix on Wed
+      timestamp: Date.now()
     }
 
     const updatedArray = [...currentMessages, newMessage];
