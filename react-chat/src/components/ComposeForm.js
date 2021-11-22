@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 
+import {useParams} from 'react-router-dom';
+
 export default function ComposeForm(props) {
   const [textValue, setTextValue] = useState('');
+  const urlParams = useParams();
 
   const handleInput = (event) => {
     setTextValue(event.target.value);
@@ -9,14 +12,14 @@ export default function ComposeForm(props) {
 
   const handleSubmit = (event) => {
     console.log("submitting", textValue);
-    props.whatToDoOnSubmit(textValue, props.user);
+    props.whatToDoOnSubmit(textValue, props.user, urlParams.channelName);
     setTextValue(''); //clear old value
   }
 
   return (
 		<form className="my-2">
 			<div className="input-group">
-        {props.user && <img src={'img/'+props.user+'.png'} alt={props.user + " avatar"} /> }
+        {props.user && <img src={'/img/'+props.user+'.png'} alt={props.user + " avatar"} /> }
 				<textarea 
           className="form-control" rows="2" placeholder="Type a new message"
           value={textValue}

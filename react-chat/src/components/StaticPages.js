@@ -1,6 +1,14 @@
 import React from 'react';
 
+import { Redirect } from 'react-router-dom';
+
 export function WelcomePage(props) {
+
+  if(props.user){ //if signed in
+    //instead of showing this, go to the chat page
+    return <Redirect to="/chat/general" />
+  }
+
   return (
     <div className="card bg-light">
       <div className="container card-body">

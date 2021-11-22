@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 
+import { useParams } from 'react-router-dom'
+
 export function ChatPane({ currentUser, messageHistory }) { //destructure props
 
-  const channelMessages = messageHistory;
+  const urlParams = useParams();
+  console.log(urlParams);
+
+  //messages that are in THIS channel
+  const channelMessages = messageHistory.filter((aMessageObj) => {
+    return aMessageObj.channel === urlParams.channelName //replace this string
+  });
 
   const messageComponentArray = channelMessages.map((aMessageObj) => {
     const theElem = <Message fromCurrentUser={aMessageObj.userName === currentUser} messageData={aMessageObj} key={aMessageObj.timestamp} />
