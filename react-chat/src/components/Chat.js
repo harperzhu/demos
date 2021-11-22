@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 
-export function ChatPane({ messageHistory }) { //destructure props
+import { useParams } from 'react-router-dom';
 
-  const messageComponentArray = messageHistory.map((aMessageObj) => {
-    const theElem = <Message messageData={aMessageObj} key={aMessageObj.timestamp} />
+export function ChatPane({ currentUser, messageHistory }) { //destructure props
+
+  const urlParams = useParams(); //get variables from the URL
+  console.log(urlParams);
+
+  const channelMessages = messageHistory.filter((aMessageObj) => {
+    return aMessageObj.channel === urlParams.channelName; //if in this channel
+  })
+
+  const messageComponentArray = channelMessages.map((aMessageObj) => {
+    const theElem = <Message fromCurrentUser={aMessageObj.userName === currentUser} messageData={aMessageObj} key={aMessageObj.timestamp} />
     return theElem; //goes into new array
   })
 
   //conditional rendering
-  if (messageHistory.length === 0) {
+  if (channelMessages.length === 0) {
     return (
       <div>
         <p>No messages yet! Start a conversation</p>
@@ -18,43 +27,44 @@ export function ChatPane({ messageHistory }) { //destructure props
 
   //return chat elements
   return (
-    <div className="my-2">
+    <div className="my-2 d-flex flex-column">
       {messageComponentArray}
-      <NewMessageDivider />
+      {/* <NewMessageDivider /> */}
     </div>
   )
 }
 
 function Message(props) {
-  // console.log(props);
-  const {userImg, userName, text} = props.messageData; //destructure
-
+  //state variable
   const [isLiked, setIsLiked] = useState(false);
 
-  //when we press a button
+  const {userImg, userName, text} = props.messageData; //destructure
+
   const handleClick = (event) => {
     setIsLiked(!isLiked);
   }
 
-  //color the heart
   let heartColor = "grey";
-  let heartIcon = "favorite_border"
-  if(isLiked) {
+  let heartIcon = "favorite_border";
+  if(isLiked){
     heartColor = "red";
-    heartIcon = "favorite"
+    heartIcon = "favorite";
   }
 
+  let divClassList = "message d-flex";
+  // if(props.fromCurrentUser){
+  //   divClassList += "align-self-end"
+  // }
+
   return (
-    <div className="message d-flex">
+    <div className={divClassList}>
       <div>
         <img src={userImg} alt={userName+" avatar"} />
       </div>
       <div className="message-body position-relative">
         <p>{userName}</p>
         <p>{text}</p>
-        <button 
-          className="btn like-button" 
-          onClick={handleClick}>
+        <button className="btn like-button" onClick={handleClick}>
           <span className="material-icons" style={{color:heartColor}}>{heartIcon}</span>
         </button>
       </div>

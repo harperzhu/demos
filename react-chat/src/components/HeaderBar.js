@@ -1,59 +1,46 @@
-import React, {useState} from 'react';
+import React from 'react';
+// import Dropdown from 'react-bootstrap/Dropdown';
 
-import Dropdown from 'react-bootstrap/Dropdown';
+import { Link, NavLink } from 'react-router-dom';
 
 //headerbar component
 export default function NavBar(props) {
 
-  const USERS = [null, "Penguin", "Parrot", "Zebra"]
-
-  const handleClick = (event) => {
-    console.log("clicked");
-    props.loginFunction(event.currentTarget.name);   
-  }
-
-  //convenience
-  const userButtons = USERS.map((userName) => {
-
-    let btnClassList = "btn user-icon"; //modify this
-    if(userName === props.user){
-      return null;
-      // btnClassList += " btn-success";
-    }
-
-    return (
-      // <button className={btnClassList} name={userName} key={userName} onClick={handleClick}>
-      //   <img src={'img/'+userName+'.png'} alt={userName+" avatar"} />
-      // </button>
-      <Dropdown.Item name={userName} key={userName} onClick={handleClick}>
-        <img src={'img/'+userName+'.png'} alt={userName+" avatar"} />&nbsp;
-        {userName}
-      </Dropdown.Item>
-    )
-  })
+  // const handleClick = (event) => {
+  //   props.loginFunction(null);
+  // }
 
   return (
     <header className="container-fluid text-light bg-primary px-1 d-flex justify-content-between">
-      <h1>React Messenger</h1>
-      <div>
+      <h1>{"React Messenger"}</h1>
+      {/* links go here */}
+      <ul className="nav nav-pills">
+        <li className="nav-item">
+          <NavLink exact to="/" className="nav-link">Home</NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink to="/about" className="nav-link">About</NavLink>
+        </li>
+        <li className="nav-item">
+          <Link to="/signin" className="nav-link">
+            <img src={'/img/' + props.user + '.png'} alt={props.user + " avatar"} />
+          </Link>
+          {/* <span class="nav-link">
+            <img src={'img/' + props.user + '.png'} alt={props.user + " avatar"} onClick={handleClick} />
+          </span> */}
+        </li>
+      </ul>
 
+       {/* <div>
         <Dropdown>
           <Dropdown.Toggle variant="primary">
-            {/* current user icon */}
-            <img src={'img/'+props.user+'.png'} alt={props.user+" avatar"} />
+            <img src={'img/' + props.user + '.png'} alt={props.user + " avatar"} />
           </Dropdown.Toggle>
-
           <Dropdown.Menu>
-            {/* other user icons */}
             {userButtons}
-            {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
           </Dropdown.Menu>
         </Dropdown>
-
-        {/* {userButtons} */}
-      </div>
+      </div> */}
     </header>
   )
 };
