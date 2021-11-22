@@ -13,19 +13,6 @@ export default function ComposeForm(props) {
     setTextValue(''); //clear old value
   }
 
-  // if(!props.user) { //if user is null
-  //   return (
-	// 		<div className="input-group">
-	// 			<textarea 
-  //         className="form-control" rows="2" placeholder="Log in in to chat"
-  //         value={textValue}
-  //         onChange={handleInput}
-  //         disabled={true}
-  //       ></textarea>
-  //     </div>
-  //   )
-  // }
-
   return (
 		<form className="my-2">
 			<div className="input-group">

@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 
 export function ChatPane({ currentUser, messageHistory }) { //destructure props
 
-  const messageComponentArray = messageHistory.map((aMessageObj) => {
+  const channelMessages = messageHistory;
+
+  const messageComponentArray = channelMessages.map((aMessageObj) => {
     const theElem = <Message fromCurrentUser={aMessageObj.userName === currentUser} messageData={aMessageObj} key={aMessageObj.timestamp} />
     return theElem; //goes into new array
   })
 
   //conditional rendering
-  if (messageHistory.length === 0) {
+  if (channelMessages.length === 0) {
     return (
       <div>
         <p>No messages yet! Start a conversation</p>
@@ -20,7 +22,7 @@ export function ChatPane({ currentUser, messageHistory }) { //destructure props
   return (
     <div className="my-2 d-flex flex-column">
       {messageComponentArray}
-      <NewMessageDivider />
+      {/* <NewMessageDivider /> */}
     </div>
   )
 }

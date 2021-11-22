@@ -4,6 +4,8 @@ import NavBar from './HeaderBar';
 import ChannelNav from './Channels';
 import { ChatPane } from './Chat';
 import ComposeForm from './ComposeForm';
+import SignInPage from './SignInPage';
+import * as Static from './StaticPages';
 
 import CHAT_LOG from '../data/chat_log.json';
 
@@ -21,12 +23,13 @@ export default function App(props) {
     }
   }
 
-  const addMessage = (msgText, msgUser) => {
+  const addMessage = (msgText, msgUser, msgChannel) => {
     const newMessageObj = {
       userName: msgUser,
       userImg: "/img/"+msgUser+".png", //hacky
       text: msgText,
-      timestamp: Date.now() //posted now
+      timestamp: Date.now(), //posted now
+      channel: msgChannel
     }
     const newMessageArray = [...messageArray, newMessageObj]; //spread to copy!
     setMessageArray(newMessageArray);
@@ -35,7 +38,7 @@ export default function App(props) {
   //get it from the chat log itself?
   const CHANNEL_LIST = [
     'general',
-    'social',
+    'random',
     'dank-memes',
     'channel-4'
   ]
@@ -43,7 +46,12 @@ export default function App(props) {
   return (
     <div className="container-fluid d-flex flex-column" >
       <NavBar user={currentUser} loginFunction={loginUser} />
-      <main className="row flex-grow-1">
+      <Static.WelcomePage />
+      <SignInPage user={currentUser} loginFunction={loginUser} />
+      {/* <Static.AboutPage /> */}
+
+      {/* channels and chat */}
+      <div className="row flex-grow-1">
         <div className="col-3">
           <ChannelNav channelList={CHANNEL_LIST} />
         </div>
@@ -53,7 +61,8 @@ export default function App(props) {
             </div>
             <ComposeForm user={currentUser} whatToDoOnSubmit={addMessage} />
         </div>
-      </main>
+      </div>
+
     </div>    
   );
 }
