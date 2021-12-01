@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 
-export function ChatPane({ currentUser, messageHistory }) { //destructure props
+import { useParams } from 'react-router-dom'
 
-  const messageComponentArray = messageHistory.map((aMessageObj) => {
+export function MessagePane({ currentUser, messageHistory }) { //destructure props
+
+  const urlParams = useParams();
+  console.log(urlParams);
+
+  //messages that are in THIS channel
+  const channelMessages = messageHistory.filter((aMessageObj) => {
+    return aMessageObj.channel === urlParams.channelName //replace this string
+  });
+
+  const messageComponentArray = channelMessages.map((aMessageObj) => {
     const theElem = <Message fromCurrentUser={aMessageObj.userName === currentUser} messageData={aMessageObj} key={aMessageObj.timestamp} />
     return theElem; //goes into new array
   })
 
   //conditional rendering
-  if (messageHistory.length === 0) {
+  if (channelMessages.length === 0) {
     return (
       <div>
         <p>No messages yet! Start a conversation</p>
