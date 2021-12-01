@@ -6,9 +6,7 @@ import { Link, NavLink } from 'react-router-dom'
 //headerbar component
 export default function NavBar(props) {
 
-  // const handleClick = (event) => {
-  //   props.loginFunction(null);
-  // }
+  const userName = props.user ? props.user.userName : null;
 
   return (
     <header className="container-fluid text-light bg-primary px-1 d-flex justify-content-between">
@@ -23,7 +21,7 @@ export default function NavBar(props) {
         </li>
         <li className="nav-item">
           <Link to="/signin" className="nav-link">
-            <img src={'img/' + props.user + '.png'} alt={props.user + " avatar"} />
+            <img src={'/img/' + userName + '.png'} alt={userName + " avatar"} />
           </Link>
           {/* <span class="nav-link">
             <img src={'img/' + props.user + '.png'} alt={props.user + " avatar"} onClick={handleClick} />

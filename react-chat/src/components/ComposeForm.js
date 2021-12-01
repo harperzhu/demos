@@ -19,7 +19,7 @@ export default function ComposeForm(props) {
   return (
 		<form className="my-2">
 			<div className="input-group">
-        {props.user && <img src={'/img/'+props.user+'.png'} alt={props.user + " avatar"} /> }
+        {props.user && <img src={'/img/'+props.user.userName+'.png'} alt={props.user.userName + " avatar"} /> }
 				<textarea 
           className="form-control" rows="2" placeholder="Type a new message"
           value={textValue}

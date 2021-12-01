@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 
 import { useParams } from 'react-router-dom'
 
-export function ChatPane({ currentUser, messageHistory }) { //destructure props
-
+export function MessagePane({ currentUser, messageHistory }) { //destructure props
   const urlParams = useParams();
-  console.log(urlParams);
 
   //messages that are in THIS channel
   const channelMessages = messageHistory.filter((aMessageObj) => {
@@ -74,15 +72,15 @@ function Message(props) {
 }
 
 //convience class
-function NewMessageDivider() {
-  return (
-    <div className="position-relative">
-      <hr className="border border-danger" />
-      <span 
-        className="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger"
-        aria-label="New messages below">
-          New
-      </span>
-    </div>
-  )
-}
+// function NewMessageDivider() {
+//   return (
+//     <div className="position-relative">
+//       <hr className="border border-danger" />
+//       <span 
+//         className="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger"
+//         aria-label="New messages below">
+//           New
+//       </span>
+//     </div>
+//   )
+// }
