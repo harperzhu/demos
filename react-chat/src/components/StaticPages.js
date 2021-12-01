@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 export function WelcomePage(props) {
 
   if(props.user){ //if signed in
-    return <Redirect to="/channel/general" />
+    //instead of showing this, go to the chat page
+    return <Redirect to="/chat/general" />
   }
 
   return (
@@ -13,7 +14,7 @@ export function WelcomePage(props) {
       <div className="container card-body">
         <h2>Welcome to React Messenger!</h2>
         <p>The latest and greatest messaging app</p>
-        <p><a href="/signin">Sign in to get started!</a></p>
+        <p><Link to="/signin">Sign in to get started!</Link></p>
       </div>
     </div>
   );

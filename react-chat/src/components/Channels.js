@@ -1,5 +1,4 @@
-
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 export default function ChannelNav({ channelList }) {
   //const channelList = props.channelList;
@@ -7,7 +6,7 @@ export default function ChannelNav({ channelList }) {
   const channelListItems = channelList.map((channelName) => {
     return (
       <li className="nav-item" key={channelName}>
-        <NavLink className="nav-link" to={"/channel/"+channelName}>{channelName}</NavLink>
+        <NavLink to={"/chat/"+channelName} className="nav-link">{channelName}</NavLink>
       </li>
     )
   })

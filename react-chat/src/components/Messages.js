@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 
-export function ChatPane({ currentUser, messageHistory }) { //destructure props
+export function MessagePane({ currentUser, messageHistory }) { //destructure props
+  const urlParams = useParams();
 
-  const urlParams = useParams(); //get variables from the URL
-  console.log(urlParams);
-
+  //messages that are in THIS channel
   const channelMessages = messageHistory.filter((aMessageObj) => {
-    return aMessageObj.channel === urlParams.channelName; //if in this channel
-  })
+    return aMessageObj.channel === urlParams.channelName //replace this string
+  });
 
   const messageComponentArray = channelMessages.map((aMessageObj) => {
     const theElem = <Message fromCurrentUser={aMessageObj.userName === currentUser} messageData={aMessageObj} key={aMessageObj.timestamp} />
@@ -73,15 +72,15 @@ function Message(props) {
 }
 
 //convience class
-function NewMessageDivider() {
-  return (
-    <div className="position-relative">
-      <hr className="border border-danger" />
-      <span 
-        className="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger"
-        aria-label="New messages below">
-          New
-      </span>
-    </div>
-  )
-}
+// function NewMessageDivider() {
+//   return (
+//     <div className="position-relative">
+//       <hr className="border border-danger" />
+//       <span 
+//         className="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger"
+//         aria-label="New messages below">
+//           New
+//       </span>
+//     </div>
+//   )
+// }

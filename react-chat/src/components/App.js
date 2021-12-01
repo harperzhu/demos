@@ -1,92 +1,50 @@
-import React, { useState } from 'react';
-
-import { Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 import NavBar from './HeaderBar';
-import ChannelNav from './Channels';
-import { ChatPane } from './Chat';
-import ComposeForm from './ComposeForm';
+import ChatPage from './ChatPage';
 import SignInPage from './SignInPage';
 import * as Static from './StaticPages';
 
-import CHAT_LOG from '../data/chat_log.json';
+import { Route, Switch } from 'react-router-dom';
 
 export default function App(props) {
   const [currentUser, setCurrentUser] = useState(null);
-  const [messageArray, setMessageArray] = useState(CHAT_LOG) //store prop as state
 
-  const loginUser = (userName) => {
-    if(!userName){
+  //initial login for debugging
+  useEffect(() => {
+    loginUser(1, 'Penguin');
+  }, [])
+
+  const loginUser = (userId, userName) => {
+    if(!userId){
       console.log("logging out");
       setCurrentUser(null);
     } else {
       console.log("logging in", userName);
-      setCurrentUser(userName);
+      setCurrentUser({uid:userId, userName: userName});
     }
   }
-
-  const addMessage = (msgText, msgUser, msgChannel) => {
-    const newMessageObj = {
-      userName: msgUser,
-      userImg: "/img/"+msgUser+".png", //hacky
-      text: msgText,
-      timestamp: Date.now(), //posted now
-      channel: msgChannel
-    }
-    console.log(newMessageObj);
-    const newMessageArray = [...messageArray, newMessageObj]; //spread to copy!
-    setMessageArray(newMessageArray);
-  }
-
-  //get it from the chat log itself?
-  const CHANNEL_LIST = [
-    'general',
-    'social',
-    'random',
-    'dank-memes',
-    'channel-4'
-  ]
 
   return (
     <div className="container-fluid d-flex flex-column" >
       <NavBar user={currentUser} loginFunction={loginUser} />
-
       <Switch>
-        <Route path="/channel/:channelName">
-        {/* channels and chat */}
-        {/* <Route exact path="/"> */}
-          <div className="row flex-grow-1">
-            <div className="col-3">
-              <ChannelNav channelList={CHANNEL_LIST} />
-            </div>
-            <div className="col-9 d-flex flex-column chat-column">
-                <div className="chat-pane">
-                <ChatPane currentUser={currentUser} messageHistory={messageArray} />
-                </div>
-                <ComposeForm user={currentUser} whatToDoOnSubmit={addMessage} />
-            </div>
-          </div>
-        </Route>
-
-        {/* If url starts with /welcome */}
         <Route exact path="/">
           <Static.WelcomePage user={currentUser} />
         </Route>
-
         <Route path="/signin">
           <SignInPage user={currentUser} loginFunction={loginUser} />
         </Route>
-
         <Route path="/about">
           <Static.AboutPage />
         </Route>
-
-        <Route path="/">
-          {/* wrong url page */}
+        <Route path="/chat/:channelName?"> {/* param is optional */}
+          <ChatPage user={currentUser} />
+        </Route>
+        <Route>
           <Static.ErrorPage />
         </Route>
       </Switch>
-
     </div>    
   );
 }
