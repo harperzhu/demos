@@ -65,8 +65,8 @@ export default function ChatPage(props) {
   const addMessage = (msgText, msgUser, msgChannel) => {
     const newMessageObj = {
       userId: msgUser.uid,
-      userName: msgUser.userName,
-      userImg: "/img/"+msgUser.userName+".png", //hacky
+      userName: msgUser.displayName,
+      userImg: msgUser.photoURL,
       text: msgText,
       timestamp: Date.now(), //posted now
       channel: msgChannel
