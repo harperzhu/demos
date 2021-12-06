@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 
 import { Redirect } from 'react-router-dom';
 
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getAuth, updateProfile } from 'firebase/auth';
+
+
 export default function ProfilePage(props) {
   const [imageFile, setImageFile] = useState(undefined)
   let initialURL = '/img/null.png'
@@ -19,9 +23,25 @@ export default function ProfilePage(props) {
     }
   }
 
-  const handleImageUpload = (event) => {
+  const handleImageUpload = async (event) => {
     console.log("Uploading", imageFile);
+    const storage = getStorage();
+    const imageRef = ref(storage, "userImages/"+props.user.uid+".png")
+
+    try {
+      await uploadBytes(imageRef, imageFile);
+      const url = await getDownloadURL(imageRef);
+      console.log(url);
+      await updateProfile(props.user, {
+        photoURL: url,
+      }) 
+    } catch(err) {
+      console.log(err.message);
+    }
+
+    console.log("done!");
   }
+
 
   return (
     <div className="container">
