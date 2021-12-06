@@ -5,7 +5,7 @@ import ChannelNav from './Channels';
 import { MessagePane } from './Messages';
 import ComposeForm from './ComposeForm';
 
-import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } from 'firebase/database'
+import { getDatabase, ref, /*set as firebaseSet,*/ push as firebasePush, onValue } from 'firebase/database'
 
 import CHAT_LOG from '../data/chat_log.json';
 
@@ -16,25 +16,6 @@ const CHANNEL_LIST = [
   'dank-memes',
   'channel-4'
 ]
-
-/*
-const react-messenger-au21-b-default = {
-  message: "Hello world",
-  post: {
-    message: "I'm a post message"
-  },
-  allPosts: {
-    MpsA2: {A}
-    MpsA4: {B} 
-    MpsA6: {C}
-  }
-//delete A4 //like element A4
-
-}
-
-*/
-
-
 
 export default function ChatPage(props) {
   const [messageArray, setMessageArray] = useState(CHAT_LOG) //store prop as state
@@ -64,7 +45,7 @@ export default function ChatPage(props) {
       console.log("leaving the chat");
     }
     return cleanup; //leave the instructions behind
-  }, []); //when to re-run (never)
+  }, [db]); //when to re-run (never)
 
   
   const addMessage = (msgText, msgUser, msgChannel) => {
