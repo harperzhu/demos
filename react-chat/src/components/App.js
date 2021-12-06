@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import NavBar from './HeaderBar';
 import ChatPage from './ChatPage';
 import SignInPage from './SignInPage';
+import ProfilePage from './Profile';
 import * as Static from './StaticPages';
 
 import { Route, Switch } from 'react-router-dom';
@@ -11,9 +12,9 @@ export default function App(props) {
   const [currentUser, setCurrentUser] = useState(null);
 
   //initial login for debugging
-  useEffect(() => {
-    loginUser(1, 'Penguin');
-  }, [])
+  // useEffect(() => {
+  //   loginUser(1, 'Penguin');
+  // }, [])
 
   const loginUser = (userId, userName) => {
     if(!userId){
@@ -34,6 +35,9 @@ export default function App(props) {
         </Route>
         <Route path="/signin">
           <SignInPage user={currentUser} loginFunction={loginUser} />
+        </Route>
+        <Route path="/profile">
+          <ProfilePage user={currentUser} />
         </Route>
         <Route path="/about">
           <Static.AboutPage />
